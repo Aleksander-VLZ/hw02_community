@@ -1,26 +1,6 @@
-<!-- templates/posts/index.html -->
-<!DOCTYPE html> <!-- Используется html 5 версии -->
-<html lang="ru"> <!-- Язык сайта - русский -->
 {% extends 'base.html' %}
-  <head>    
-    <meta charset="utf-8"> <!-- Кодировка сайта -->
-    <!-- Сайт готов работать с мобильными устройствами -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Загружаем фав-иконки -->
-    <link rel="icon" href="img/fav/fav.ico" type="image">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/fav/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/fav/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/fav/favicon-16x16.png">
-    <meta name="msapplication-TileColor" content="#000">
-    <meta name="theme-color" content="#ffffff">
-    <!-- Подключен файл со стандартными стилями бустрап -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Последние обновления на сайте</title>
-  </head>
   <body>
-    <header>
       {% include 'includes/header.html' %}      
-    </header>
     <main> 
       {% block content %}
       <!-- класс py-5 создает отступы сверху и снизу блока -->
@@ -43,7 +23,7 @@
               и Бабарыкинымъ, ругалъ Сержпутовскому и ничего не сдѣлалъ, вотъ 3 упрека, которыя дѣлаю с
               ебѣ за нынѣшній день. (3)
             </p>
-            <a href="group_list.html">все записи группы</a>
+            <a href='group_list.html'>все записи группы</a>
           </article>
           <hr>
           <article>
@@ -67,7 +47,7 @@
               накрылъ Крыжановскій, что, признаюсь, было мнѣ не совсѣмъ пріятно. Упрекаю себя за 
               безхарактерность, что не высидѣлъ дома, и зa праздность цѣлаго дня. Это главный пунктъ. (2)
             </p>
-            <a href="group_list.html">все записи группы</a>
+            <a href={% url 'posts:index' %}>все записи группы</a>
           </article>
           <hr>
           <article>
@@ -84,19 +64,19 @@
               Утро читалъ, объѣдался грушами и вмѣсто обѣда ѣлъ сыръ. Несмотря на кутежи у Сталыпина и 
               Сержпутовскаго по случаю полученія наградъ, не завидовалъ, а провелъ день весело. Вечеромъ 
               хватилъ босонож[ку] и выпилъ бокала два шампанскаго съ Шварц[емъ], Вейлеровскимъ [?] и 
-              Гембичомъ, потомъ болталъ съ Шубинымъ и съ Сашей Горчаковымъ. — Исключая праздности, 
+              Гембичомъ, потомъ болталъ съ Шубинымъ и съ Сашей Горчаковымъ. — Исключая праздности,
               днемъ своимъ очень доволенъ. (1)
             </p>
-            <a href="group_list.html">все записи группы</a>
+            <a href={% url 'posts:index' %}>все записи группы</a>
           </article>
           <!-- под последним постом нет линии -->
-        </div> 
-        {% endblock %} 
+        </div>
+        {% endblock %}
     </main>
     <!-- Использованы классы бустрапа: -->
     <!-- border-top: создаёт тонкую линию сверху блока -->
     <!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
-    <!-- py-3: контент внутри размещается с отступом сверху и снизу -->    
+    <!-- py-3: контент внутри размещается с отступом сверху и снизу -->
     <footer class="border-top text-center py-3">
       {% include 'includes/footer.html' %}
     </footer>
