@@ -11,12 +11,16 @@ class PostAdmin(admin.ModelAdmin):
         'pub_date',
         'author',
         'group',
-    ) 
+    )
     list_editable = ('group',)
     search_fields = ('text',)
     list_filter = ('pub_date',)
     empty_value_display = '-пусто-'
 # При регистрации модели Post источником конфигурации для неё назначаем
+
+
+class GroupAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("title",)}
 
 
 admin.site.register(Post, PostAdmin)

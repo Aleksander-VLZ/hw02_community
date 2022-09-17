@@ -7,8 +7,8 @@ User = get_user_model()
 
 
 class Group(models.Model):  # наследник класса Model из модуля models
-    title = models.TextField(max_length=200)  # название сообщества
-    slug = models.SlugField(unique=True)  # адрес сообщества
+    title = models.CharField(max_length=200)  # название сообщества
+    slug = models.SlugField(unique=True, verbose_name='Идентификатор')
     description = models.TextField()  # описание сообщества
 
     def __str__(self) -> str:
@@ -21,11 +21,12 @@ class Post(models.Model):  # наследник класса Model из моду
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='posts'
+        related_name="posts"
     )
     group = models.ForeignKey(
         Group,
         blank=True,
         null=True,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name="posts"
     )
