@@ -8,7 +8,7 @@ User = get_user_model()
 
 class Group(models.Model):  # наследник класса Model из модуля models
     title = models.CharField(max_length=200)  # название сообщества
-    slug = models.SlugField(unique=True, verbose_name='Идентификатор')
+    slug = models.SlugField(unique=True, max_length=200)
     description = models.TextField()  # описание сообщества
 
     def __str__(self) -> str:

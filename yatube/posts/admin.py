@@ -20,8 +20,13 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class GroupAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'slug',
+        'description',
+    )
     prepopulated_fields = {"slug": ("title",)}
 
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Group)
+admin.site.register(Group, GroupAdmin)
