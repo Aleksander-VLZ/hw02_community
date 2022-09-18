@@ -9,14 +9,7 @@
     {{ group }}
   </p>
   {% for post in posts %}
-    <ul>
-      <li>
-       Автор: {{ post.author.get_full_name }}
-      </li>
-      <li>
-       Дата публикации: {{ post.pub_date|date:"d E Y" }}
-      </li>
-    </ul>     
+    {% include 'posts/post_card.html' %}
     <p>
     {{ post.text }}
     </p>

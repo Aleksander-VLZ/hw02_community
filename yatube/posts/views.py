@@ -7,7 +7,7 @@ LAST_POSTS: int = 10
 
 
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:LAST_POSTS]
+    posts = Post.objects.all()[:LAST_POSTS]
     context = {
         'posts': posts,
     }
@@ -21,7 +21,7 @@ def group_posts(request, slug):
     # В нашем случае в переменную group будут переданы объекты модели Group,
     # поле slug у которых соответствует значению slug в запросе.
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:LAST_POSTS]
+    posts = Post.objects.all()[:LAST_POSTS]
     context = {
         'group': group,
         'posts': posts,
