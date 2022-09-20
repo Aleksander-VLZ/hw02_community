@@ -25,9 +25,6 @@ class Group(models.Model):  # наследник класса Model из мод�
 
 
 class Post(models.Model):  # наследник класса Model из модуля models
-    class Meta:
-        ordering = ['-pub_date']
-
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
@@ -42,3 +39,6 @@ class Post(models.Model):  # наследник класса Model из моду
         on_delete=models.SET_NULL,
         related_name="posts"
     )
+
+    class Meta:
+        ordering = ['-pub_date']

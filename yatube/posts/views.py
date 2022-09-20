@@ -21,7 +21,7 @@ def group_posts(request, slug):
     # В нашем случае в переменную group будут переданы объекты модели Group,
     # поле slug у которых соответствует значению slug в запросе.
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.all()[:LAST_POSTS]
+    posts = group.posts.all()[:LAST_POSTS]
     context = {
         'group': group,
         'posts': posts,
