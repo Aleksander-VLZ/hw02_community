@@ -40,5 +40,9 @@ class Post(models.Model):  # наследник класса Model из моду
         related_name="posts"
     )
 
+    def __str__(self) -> str:
+        # выводим текст поста
+        return self.text
+
     class Meta:
         ordering = ['-pub_date']
