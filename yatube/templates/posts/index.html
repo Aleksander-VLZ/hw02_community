@@ -3,7 +3,8 @@
  Последние обновления на сайте
 {% endblock %}
 {% block content %}
-<h1>{{ text }}</h1>
+<div class="container">
+<h1>Последние обновления на сайте{{ text }}</h1>
 <article>
   {% for post in posts %}
   <ul>
