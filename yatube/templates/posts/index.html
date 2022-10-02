@@ -6,7 +6,7 @@
 <div class="container">
 <h1>Последние обновления на сайте{{ text }}</h1>
 <article>
-  {% for post in posts %}
+  {% for post in page_obj %}
   <ul>
     <li>
       Автор: {{ post.author.get_full_name }}
@@ -18,6 +18,7 @@
   <p>{{ post.text }}</p>
   <a href="">все записи группы</a>
   {% if not forloop.last %}<hr>{% endif %}
-{% endfor %}
+  {% endfor %}
+  {% include 'posts/includes/paginator.html' %}
 </article>
 {% endblock %}

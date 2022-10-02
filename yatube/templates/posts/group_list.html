@@ -8,7 +8,7 @@
   <p>
     {{ group }}
   </p>
-  {% for post in posts %}
+  {% for post in page_obj %}
     {% include 'posts/post_card.html' %}
     <p>
     {{ post.text }}
@@ -19,6 +19,7 @@
       </a>
     {% endif %}
     {% if not forloop.last %}<hr>{% endif %}
-    {% endfor %}
+  {% endfor %}
+  {% include 'posts/includes/paginator.html' %}
 </article>
 {% endblock %}

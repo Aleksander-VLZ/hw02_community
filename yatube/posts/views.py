@@ -1,4 +1,4 @@
-# yatube/views.py
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 # Импортируем модель, чтобы обратиться к ней
 from .models import Post, Group
@@ -7,23 +7,26 @@ LAST_POSTS: int = 10
 
 
 def index(request):
-    posts = Post.objects.all()[:LAST_POSTS]
+    post_list = Post.objects.all().order_by('-pub_date')
+    paginator = Paginator(post_list, LAST_POSTS)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'posts': posts,
+        'page_obj': page_obj,
     }
     return render(request, 'posts/index.html', context)
 
 
 # Для страницы, на которой будут посты, отфильтрованные по группам;
 def group_posts(request, slug):
-    # Функция get_object_or_404 получает по заданным критериям объект,
-    # из базы данных или возвращает сообщение об ошибке, если объект не найден.
-    # В нашем случае в переменную group будут переданы объекты модели Group,
-    # поле slug у которых соответствует значению slug в запросе.
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.all()[:LAST_POSTS]
+    posts = Post.objects.filter(group=group).order_by('-pub_date')
+    paginator = Paginator(posts, LAST_POSTS)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
         'group': group,
         'posts': posts,
+        'page_obj': page_obj,
     }
     return render(request, 'posts/group_list.html', context)

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts.apps.PostsConfig',
     'users.apps.UsersConfig',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.year.year',
             ],
         },
     },
@@ -124,3 +126,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+LOGIN_URL = 'users:login'
+
+LOGIN_REDIRECT_URL = 'posts:index'
+
+LOGOUT_REDIRECT_URL = 'posts:index'
+#  подключаем движок filebased.EmailBackend
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# указываем директорию, в которую будут складываться файлы писем
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+PASSWORD_CHANGE_URL = 'users:password_change'
+PASSWORD_CHANGE_REDIRECT_URL = 'users:password_change_done'
+PASSWORD_RESET_URL = 'users:password_reset'
+PASSWORD_RESET_REDIRECT_URL = 'users:password_reset_done'
+PASSWORD_RESET_CONFIRM_URL = 'users:password_reset_confirm'
+PASSWORD_RESET_COMPLETE_REDIRECT_URL = 'users:password_reset_complete'
